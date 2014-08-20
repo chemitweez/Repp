@@ -89,6 +89,7 @@ public class MainActivity extends FragmentActivity {
 			}
 			NUM_PAGES = result.size(); //Finally initializing the total number of pages
 	        mPager = (ViewPager) findViewById(R.id.pager);
+	        mPager.setPageTransformer(true, new DepthPageTransformer());
 	        //Sending List of Drawables to PagerAdapter
 	        mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager(), images);
 	        mPager.setAdapter(mPagerAdapter);
@@ -125,7 +126,9 @@ public class MainActivity extends FragmentActivity {
             this.images = d;
         }
 
-        @Override
+
+
+		@Override
         public Fragment getItem(int position) {
             return ScreenSlidePageFragment.create(position, images);
         }
